@@ -11,12 +11,12 @@ var noMatchStyle = {
 }
 
 export default class NoMatch extends Component {
-    render() {
-      return (
-        <div style={noMatchStyle}>
-          <img src="http://i.imgur.com/KsPIFpv.jpg" />
-          <h2>..You shouldn't be here.. Lets try Here</h2>
-        </div>  
-      );
-    }
+  render() {
+    return (
+      <div style={noMatchStyle}>
+        <img src="http://i.imgur.com/KsPIFpv.jpg" />
+        <h2>..You shouldn't be here.. Lets try <a href='/'>Here</a></h2>
+      </div>  
+    );
   }
+}
