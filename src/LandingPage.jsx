@@ -2,23 +2,23 @@ import React, {Component} from 'react';
 import { browserHistory } from 'react-router';
 
 var titleBoxStyle = {
- width: '100%', 
- height: '250px',
- margin: '0',
- textAlign: 'center',
- paddingTop: '20px',
- backgroundColor: '#7edda3', 
- backgroundImage:'url("http://i287.photobucket.com/albums/ll139/vmsg/Abstract%20sigs/abstract-waves-byvanesinger.png")', opacity: .8,
- backgroundPosition: 'center',
- borderRadius: '1px',
+  width: '100%', 
+  height: '250px',
+  margin: '0',
+  textAlign: 'center',
+  paddingTop: '20px',
+  backgroundColor: '#7edda3', 
+  backgroundImage:'url("http://i287.photobucket.com/albums/ll139/vmsg/Abstract%20sigs/abstract-waves-byvanesinger.png")', opacity: .8,
+  backgroundPosition: 'center',
+  borderRadius: '1px',
 }
 
 var titleStyle = {
- fontSize: '80px',
- fontFamily: 'Pattaya, arial',
- color: 'whitesmoke',
- textShadow: '-1px 1px 1px rgba(0,0,0,1)',
- marginTop:'60px',
+  fontSize: '80px',
+  fontFamily: 'Pattaya, arial',
+  color: 'whitesmoke',
+  textShadow: '-1px 1px 1px rgba(0,0,0,1)',
+  marginTop:'60px',
 }
 
 var loginFormStyle = {
@@ -41,11 +41,10 @@ var loginDescriptor = {
   marginTop: '15px',
   marginLeft: '10px',
   fontSize: '16px',
-  color: '#333'
-  
+  color: '#333' 
 }
 
-var loginStyle ={
+var loginStyle = {
   width: '175px',
   height: '25px',
   fontSize:'14px',
@@ -75,8 +74,8 @@ export default class LandingPage extends Component {
         </div>
         <form onSubmit={this.onLoginSubmit.bind(this)} style={loginFormStyle}><span style={loginDescriptor}>Please Fill Out Your Information Below:</span> <br />
           <input type="text" placeholder="Nickname" style={loginStyle} /> <br />
-          <input type="email" placeholder="Email" style={loginStyle} /> <br />
           <input type="phone" placeholder="Phone Number" style={loginStyle} /> <br />
+          <input type="email" placeholder="Email" style={loginStyle} /> <br />
           <input type="submit" placeholder="Submit" style={loginSubmit} />
         </form>  
       </div>

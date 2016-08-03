@@ -1,10 +1,13 @@
   import React, {Component} from 'react';
   import ReactDOM from 'react-dom';
   import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
+  
   import LandingPage from './LandingPage.jsx';
   import RoomFinder from './RoomFinder.jsx';
   import NoMatch from './NoMatch.jsx';
+
   import globalStyles from './assets/styles/global.css';
+  import { StyleSheet, css } from 'aphrodite';
 
   var appContainer = {
     width:'800px',
@@ -19,19 +22,36 @@
     boxShadow: '2px 2px 14px 2px rgba(32,32,33,0.91)',
   }
 
-  var noteHolder ={
+  var noteHolder = {
     width: '81%',
     height: '75%',
     // width:'650px',
     // height: '400px',
     backgroundColor:'whitesmoke',
     marginLeft:'15px',
-    marginTop:'15px',
+    marginTop:'25px',
     border: '2px solid grey',
     borderRadius: '2px'
   }
 
-  var inputStyles ={
+  var exitStyle = {
+    float: 'right',
+    width: '25px',
+    height: '25px',
+    cursor: 'pointer',
+    borderTop: 'none',
+    borderRight: 'none', 
+    borderBottom:'2px solid #990000',
+    borderLeft:'2px solid #990000',
+    borderRadius: '0px 0px 0px 3px',
+    backgroundColor: '#b30000',
+    font: '18px Arial, Helvetica, sans-serif',
+    textAlign: 'center',
+    color: '#fffbe8',
+    textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
+  }
+
+  var inputStyles = {
     textAlign: 'center',
   }
 
@@ -50,6 +70,7 @@
     marginTop: '25px',
     marginLeft: '6px',
   }
+
   var importantTextStyle = {
     float:'left',
     marginTop: '22px',
@@ -59,44 +80,35 @@
     color: '#333',
   }
 
-  var sendStyle ={
-  float: 'middle',
-  width: '85px',
-  height: '35px',
-  cursor: 'pointer',
-  padding: '8px 15px',
-  marginTop: '13px',
-  marginRight: '30px',
-  border: '2px solid #60686b',
-  borderRadius: '3px',
-  font: '16px Arial, Helvetica, sans-serif',
-  color: '#fffbe8',
-  textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
+  var sendStyle = {
+    float: 'middle',
+    width: '85px',
+    height: '35px',
+    cursor: 'pointer',
+    padding: '8px 15px',
+    marginTop: '13px',
+    marginRight: '40px',
+    border: '1px solid #60686b',
+    borderRadius: '3px',
+    font: '16px Arial, Helvetica, sans-serif',
+    color: '#fffbe8',
+    textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
   }
 
-  var exitStyle ={
-  float: 'right',
-  width: '25px',
-  height: '25px',
-  cursor: 'pointer',
-  borderTop: 'none',
-  borderRight: 'none', 
-  borderBottom:'2px solid #990000',
-  borderLeft:'2px solid #990000',
-  borderRadius: '0px 0px 0px 3px',
-  backgroundColor: '#b30000',
-  font: '18px Arial, Helvetica, sans-serif',
-  textAlign: 'center',
-  color: '#fffbe8',
-  textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
-}
-
-
+  var bottomReference = {
+    display: 'block',
+    clear: 'both',
+    marginLeft: '40px',
+    marginTop: '35px',
+    color: 'grey',
+    opacity: '.6',
+    fontFamily: 'arial',
+  }
 
   class App extends Component {
     onExitClick(e) {
       e.preventDefault()
-      browserHistory.push('/')
+      browserHistory.push('/roomfinder')
     }
     render() {
       return (
@@ -109,6 +121,11 @@
           <input type="checkbox" value="Important" style={importantStyle}/>  
           <input type="submit" value="Send" style={sendStyle} />
           </form>
+          <div style={bottomReference}>
+            <span>NickName | </span>
+            <span>Phone Number | </span>
+            <span>Email</span>  
+          </div>
         </div>  
       );
     }
@@ -123,24 +140,3 @@
     </Router>,
     document.getElementById('root')
   )
-  
-/*  
-Jim's React Router Example
-
- ReactDOM.render(
-    <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <IndexRoute component={Welcome} />
-        <Route path="users" component={UserList}>
-          <Route path="/user/:userId" component={User}/>
-        </Route>
-      </Route>
-      <Route path="*" component={NoMatch} />
-    </Router>,
-    document.getElementById('root')
-  );
-    {this.props.children} for paths that are nested in eachother
-*/
-
-
-
