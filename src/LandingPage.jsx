@@ -14,8 +14,8 @@ var titleBoxStyle = {
 }
 
 var titleStyle = {
- fontSize: '65px',
- fontFamily: 'arial',
+ fontSize: '80px',
+ fontFamily: 'Pattaya, arial',
  color: 'whitesmoke',
  textShadow: '-1px 1px 1px rgba(0,0,0,1)',
  marginTop:'60px',

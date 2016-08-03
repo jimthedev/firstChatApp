@@ -1,3 +1,18 @@
 * {
   margin: 0;
+
+}
+
+/* pattaya-regular - latin */
+@font-face {
+  font-family: 'Pattaya';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/pattaya-v1-latin/pattaya-v1-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Pattaya'), local('Pattaya-Regular'),
+       url('../fonts/pattaya-v1-latin/pattaya-v1-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/pattaya-v1-latin/pattaya-v1-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('../fonts/pattaya-v1-latin/pattaya-v1-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/pattaya-v1-latin/pattaya-v1-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/pattaya-v1-latin/pattaya-v1-latin-regular.svg#Pattaya') format('svg'); /* Legacy iOS */
 }

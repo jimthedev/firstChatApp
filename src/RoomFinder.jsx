@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 var roomStyle = {
   textAlign: 'center',
   fontFamily: 'arial',
+  marginTop: '30px',
 }
 
 var roomButtonStyle = {
@@ -19,6 +20,7 @@ var roomButtonStyle = {
   textShadow: '-1px 1px 1px rgba(0,0,0,1)',
   color:'whitesmoke',
   fontSize: '16px',
+  fontFamily: 'Pattaya',
 }
 
 export default class RoomFinder extends Component {
