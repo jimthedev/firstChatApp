@@ -23,32 +23,35 @@
   }
 
   var noteHolder = {
-    width: '81%',
+    width: '96%',
     height: '75%',
     // width:'650px',
     // height: '400px',
     backgroundColor:'whitesmoke',
     marginLeft:'15px',
-    marginTop:'25px',
+    marginTop:'15px',
     border: '2px solid grey',
     borderRadius: '2px'
   }
 
   var exitStyle = {
     float: 'right',
-    width: '25px',
-    height: '25px',
+    width: '15px',
+    height: '15px',
     cursor: 'pointer',
     borderTop: 'none',
-    borderRight: 'none', 
-    borderBottom:'2px solid #990000',
-    borderLeft:'2px solid #990000',
-    borderRadius: '0px 0px 0px 3px',
+    borderRight: 'none',
+    marginTop: '-18px',
+    marginRight: '-14px',
+    paddingRight: '21px',
+    paddingBottom: '25px', 
+    border: '1px solid #333',
+    borderRadius: '50%',
     backgroundColor: '#b30000',
-    font: '18px Arial, Helvetica, sans-serif',
-    textAlign: 'center',
-    color: '#fffbe8',
+    fontSize:'20px',
+    color:'whitesmoke',
     textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
+    boxShadow: '1px 1px 10px 1px rgba(65,66,66,0.91)',
   }
 
   var inputStyles = {
@@ -56,7 +59,7 @@
   }
 
   var noteBox = {
-    width:'330px',
+    width:'375px',
     height: '35px',
     marginTop: '10px',
     marginLeft: '40px',
@@ -74,7 +77,7 @@
   var importantTextStyle = {
     float:'left',
     marginTop: '22px',
-    marginLeft: '6px',
+    marginLeft: '26px',
     fontFamily: 'arial',
     fontSize:'16px',
     color: '#333',
@@ -87,7 +90,7 @@
     cursor: 'pointer',
     padding: '8px 15px',
     marginTop: '13px',
-    marginRight: '40px',
+    marginRight: '60px',
     border: '1px solid #60686b',
     borderRadius: '3px',
     font: '16px Arial, Helvetica, sans-serif',
@@ -105,16 +108,18 @@
     fontFamily: 'arial',
   }
 
+  //&#10006; (✖️) Use Local Storage to get the exit button to host the info stored.
+
   class App extends Component {
     onExitClick(e) {
       e.preventDefault()
-      browserHistory.push('/roomfinder')
+      browserHistory.push('/roomfinder/')
     }
     render() {
       return (
         <div style={appContainer}>
-          <input type="button" value="X" style={exitStyle} onClick={this.onExitClick.bind(this)} />
-          <div style={noteHolder}> Enter Text Below to Start Your Notes </div>
+          <input type="button" value="&#10006;" style={exitStyle} onClick={this.onExitClick.bind(this)} />
+          <div style={noteHolder}>Enter Text Below to Start Your Notes</div>
           <form style={inputStyles}>
           <input type="text" placeholder="Enter Your Note" style={noteBox} />
           <span style={importantTextStyle}>Important: </span> 
@@ -122,9 +127,9 @@
           <input type="submit" value="Send" style={sendStyle} />
           </form>
           <div style={bottomReference}>
-            <span>NickName | </span>
-            <span>Phone Number | </span>
-            <span>Email</span>  
+            <span>{localStorage.getItem('nickname')} | </span>
+            <span>{localStorage.getItem('phone')} | </span>
+            <span>{localStorage.getItem('email')}</span>  
           </div>
         </div>  
       );
@@ -134,7 +139,7 @@
   ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={LandingPage} />
-      <Route path="roomfinder" component={RoomFinder} />
+      <Route path="roomfinder/" component={RoomFinder} />
       <Route path="/room/:roomId" component={App} />
       <Route path="*" component={NoMatch} />
     </Router>,

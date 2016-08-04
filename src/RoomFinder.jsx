@@ -40,12 +40,12 @@ var roomReturnStyle = {
 }
 
 export default class RoomFinder extends Component {
-  onCreateClick(e) {
+  onCreate(e) {
     e.preventDefault()
-    browserHistory.push('/room/1')
+    browserHistory.push('/room/:roomId')
   }
 
-  onReturnClick(e) {
+  onReturn(e) {
     e.preventDefault()
     browserHistory.push('/')
   }
@@ -53,11 +53,12 @@ export default class RoomFinder extends Component {
   render() {
     return (
       <div style={roomStyle}>
-        <h2>Select Below to Create a Room or Join an Existing One</h2>
+        <h3>Welcome, {localStorage.getItem('nickname')}</h3>
+        <h2>Choose Below to Create a Room or Join an Existing One</h2>
         <form>
-          <input type="button" value="Create" style={roomButtonStyle} onClick={this.onCreateClick.bind(this)} />
+          <input type="button" value="Create" style={roomButtonStyle} onClick={this.onCreate.bind(this)} />
           <input type="button" value="Join" style={roomButtonStyle} /> <br />
-          <input type="button" value="Return to Login" style={roomReturnStyle} onClick={this.onReturnClick.bind(this)} />
+          <input type="button" value="Return to Login" style={roomReturnStyle} onClick={this.onReturn.bind(this)} />
         </form> 
       </div>      
     );

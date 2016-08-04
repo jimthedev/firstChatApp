@@ -62,9 +62,36 @@ var loginSubmit = {
 }
 
 export default class LandingPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nickname: '',
+     
+      phone: '',
+     
+      email: ''
+
+    }
+  }
+
+  handleNameInputChange(e) {
+    this.setState({nickname: e.target.value});
+  }
+
+ handlePhoneInputChange(e) {
+    this.setState({phone: e.target.value});
+  }
+
+  handleEmailInputChange(e) {
+    this.setState({email: e.target.value});
+  }
+
   onLoginSubmit(e) {
     e.preventDefault()
-    browserHistory.push('/roomfinder')
+    localStorage.setItem('nickname', this.state.nickname)
+    localStorage.setItem('phone', this.state.phone)
+    localStorage.setItem('email', this.state.email)
+    browserHistory.push('/roomfinder/')
   }
   render() {
     return (
@@ -73,9 +100,9 @@ export default class LandingPage extends Component {
           <h1 style={titleStyle}>Note-oriety</h1>
         </div>
         <form onSubmit={this.onLoginSubmit.bind(this)} style={loginFormStyle}><span style={loginDescriptor}>Please Fill Out Your Information Below:</span> <br />
-          <input type="text" placeholder="Nickname" style={loginStyle} /> <br />
-          <input type="phone" placeholder="Phone Number" style={loginStyle} /> <br />
-          <input type="email" placeholder="Email" style={loginStyle} /> <br />
+          <input onChange={this.handleNameInputChange.bind(this)} type="text" placeholder="Nickname" style={loginStyle} /> <br />
+          <input onChange={this.handlePhoneInputChange.bind(this)} type="phone" placeholder="Phone Number" style={loginStyle} /> <br />
+          <input onChange={this.handleEmailInputChange.bind(this)} type="email" placeholder="Email" style={loginStyle} /> <br />
           <input type="submit" placeholder="Submit" style={loginSubmit} />
         </form>  
       </div>
