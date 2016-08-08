@@ -5,9 +5,12 @@
   import LandingPage from './LandingPage.jsx';
   import RoomFinder from './RoomFinder.jsx';
   import NoMatch from './NoMatch.jsx';
+  import MessageList from './MessageList.jsx';
 
   import globalStyles from './assets/styles/global.css';
   import { StyleSheet, css } from 'aphrodite';
+
+  import Horizon from '@horizon/client';
 
   var appContainer = {
     width:'800px',
@@ -108,23 +111,52 @@
     fontFamily: 'arial',
   }
 
-  //&#10006; (✖️) Use Local Storage to get the exit button to host the info stored.
+  const horizon = Horizon({
+    secure: false,
+    host: 'localhost:8181'
+  });
+  const chat = horizon('messages');
 
   class App extends Component {
+    constructor(props) {
+      super(props);
+    }  
+
+    //Tells what to do upon clicking send
+    handleSendClick() {
+      var now = new Date();
+      chat.store({
+        author: 'Alec Bridge',
+        text: 'test message',
+        datetime: now.getTime()
+      })
+    }
+
+    //Tells what to do when clicking exit (redirect to prev page currently)
     onExitClick(e) {
       e.preventDefault()
       browserHistory.push('/roomfinder/')
     }
+
     render() {
       return (
         <div style={appContainer}>
           <input type="button" value="&#10006;" style={exitStyle} onClick={this.onExitClick.bind(this)} />
-          <div style={noteHolder}>Enter Text Below to Start Your Notes</div>
+          <div style={noteHolder}>
+            <MessageList chat={chat} />
+          </div>
           <form style={inputStyles}>
-          <input type="text" placeholder="Enter Your Note" style={noteBox} />
-          <span style={importantTextStyle}>Important: </span> 
-          <input type="checkbox" value="Important" style={importantStyle}/>  
-          <input type="submit" value="Send" style={sendStyle} />
+            <input type="text" placeholder="Enter Your Note" style={noteBox} />
+            <span style={importantTextStyle}>Important: </span> 
+            <input type="checkbox" value="Important" style={importantStyle}/>  
+            <input type="submit" value="Send" onClick={this.handleSendClick.bind(this)} style={sendStyle} />
+            {this.state.messages.map(function(message){
+            return (
+              <div key={message.id}>
+                {message.author} : {message.text}
+              </div>
+            );    
+          })}
           </form>
           <div style={bottomReference}>
             <span>{localStorage.getItem('nickname')} | </span>
@@ -135,6 +167,39 @@
       );
     }
   }
+
+/*
+class MessageList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      messages: []
+    };
+
+    this.props.chat.watch().subscribe((result) => {
+      this.setState({messages: result});
+    })
+  }
+
+
+  render() {
+
+    return (
+      <div>
+        {this.state.messages.map(function(message){
+          return (
+            <div key={message.id}>
+              {localStorage.getItem('nickname')}: {message.text}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+}
+
+*/
 
   ReactDOM.render(
     <Router history={browserHistory}>

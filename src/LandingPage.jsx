@@ -66,11 +66,8 @@ export default class LandingPage extends Component {
     super(props);
     this.state = {
       nickname: '',
-     
       phone: '',
-     
       email: ''
-
     }
   }
 
