@@ -1,7 +1,7 @@
   import React, {Component} from 'react';
   import ReactDOM from 'react-dom';
   import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
-  
+
   import LandingPage from './LandingPage.jsx';
   import RoomFinder from './RoomFinder.jsx';
   import NoMatch from './NoMatch.jsx';
@@ -18,7 +18,7 @@
     margin: '0 auto',
     marginTop: '20px',
     backgroundColor:'#7edda3',
-    backgroundImage:'url("http://i287.photobucket.com/albums/ll139/vmsg/Abstract%20sigs/abstract-waves-byvanesinger.png")', 
+    backgroundImage:'url("http://i287.photobucket.com/albums/ll139/vmsg/Abstract%20sigs/abstract-waves-byvanesinger.png")',
     opacity: .8,
     border: '3px solid #333',
     borderRadius: '5px',
@@ -47,7 +47,7 @@
     marginTop: '-18px',
     marginRight: '-14px',
     paddingRight: '21px',
-    paddingBottom: '25px', 
+    paddingBottom: '25px',
     border: '1px solid #333',
     borderRadius: '50%',
     backgroundColor: '#b30000',
@@ -120,10 +120,14 @@
   class App extends Component {
     constructor(props) {
       super(props);
-    }  
+      this.state = {
+        messages: []
+      }
+    }
 
     //Tells what to do upon clicking send
-    handleSendClick() {
+    handleSendClick(e) {
+      e.preventDefault()
       var now = new Date();
       chat.store({
         author: 'Alec Bridge',
@@ -147,59 +151,26 @@
           </div>
           <form style={inputStyles}>
             <input type="text" placeholder="Enter Your Note" style={noteBox} />
-            <span style={importantTextStyle}>Important: </span> 
-            <input type="checkbox" value="Important" style={importantStyle}/>  
+            <span style={importantTextStyle}>Important: </span>
+            <input type="checkbox" value="Important" style={importantStyle}/>
             <input type="submit" value="Send" onClick={this.handleSendClick.bind(this)} style={sendStyle} />
             {this.state.messages.map(function(message){
             return (
               <div key={message.id}>
                 {message.author} : {message.text}
               </div>
-            );    
+            );
           })}
           </form>
           <div style={bottomReference}>
             <span>{localStorage.getItem('nickname')} | </span>
             <span>{localStorage.getItem('phone')} | </span>
-            <span>{localStorage.getItem('email')}</span>  
+            <span>{localStorage.getItem('email')}</span>
           </div>
-        </div>  
+        </div>
       );
     }
   }
-
-/*
-class MessageList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      messages: []
-    };
-
-    this.props.chat.watch().subscribe((result) => {
-      this.setState({messages: result});
-    })
-  }
-
-
-  render() {
-
-    return (
-      <div>
-        {this.state.messages.map(function(message){
-          return (
-            <div key={message.id}>
-              {localStorage.getItem('nickname')}: {message.text}
-            </div>
-          );
-        })}
-      </div>
-    );
-  }
-}
-
-*/
 
   ReactDOM.render(
     <Router history={browserHistory}>
